@@ -1,0 +1,71 @@
+<head>
+  <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+  <script src="https://maps.google.com/maps/api/js?key=AIzaSyAJRltFVdEfQpL4elY_WOoOpyhKrZaT-iU&libraries=geometry" type="text/javascript"></script>
+  <script src="bundle.js"></script>
+  <style>
+.content-inner {padding: 0 8% 100px;}
+.results a {
+  font-weight: bold;
+  border-bottom: 1px dotted #ccc;
+}
+      .results a:hover {
+        border-bottom: 1px dotted #666;
+      }
+      #map-canvas {
+        width: 300px;
+        display: block;
+        height: 300px;
+      }
+  </style>
+</head>
+
+<body>
+  <div id="enterLocation">
+    <div class="form-wrapper">
+      <h2 class="text-align-center">
+        Is Crown Town Compost in my neighborhood?
+      </h2>
+      <form onsubmit="compareLocation(); return false;">
+        <div class="field-list clear" style="width: 100%;display: inline-block;">
+          <fieldset class="form-item fields address required">
+            <div class="title">Address</div>
+            <legend>Address</legend>
+            <div class="field address1">
+              <label class="caption"><input id="address" class="field-element field-control" name="address" x-autocompletetype="address-line1" type="text" spellcheck="false" data-title="Line1">
+                Address 1</label>
+            </div>
+            <div class="field address2">
+              <label class="caption"><input id="address-line2" class="field-element field-control" name="address2" x-autocompletetype="address-line2" type="text" spellcheck="false" data-title="Line2">
+                Address 2</label>
+            </div>
+            <div class="field city">
+              <label class="caption"><input id="city" class="field-element field-control" name="city" x-autocompletetype="city" type="text" spellcheck="false" data-title="City">
+                City</label>
+            </div>
+            <div class="field state-province">
+              <label class="caption"><input id="state" class="field-element field-control" name="state" x-autocompletetype="state" type="text" spellcheck="false" data-title="State">
+                State/Province</label>
+            </div>
+            <div class="field zip">
+              <label class="caption"><input id="zip" class="field-element field-control" name="zipcode" x-autocompletetype="postal-code" type="text" spellcheck="false" data-title="Zip">
+                Zip/Postal Code</label>
+            </div>
+          </fieldset>
+        </div>
+        <div class="form-button-wrapper form-button-wrapper--align-center">
+          <input class="button sqs-system-button sqs-editable-button" id="submit" type="submit" value="Check My Address" />
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="results" id="withinReach" style="display: none;">
+    <h2 class="text-align-center">Good news! We're in your neighborhood.</h2>
+    <p class="text-align-center"><a href="/sign-up-options">Sign up now</a> and start composting or <a href="/contact-us">contact us</a> if you have questions.</p>
+    <p class="text-align-center"><a href="#" class="reloadLink"><i class="fa fa-arrow-circle-o-left" style="margin-right: 10px; margin-top: 30px;"></i>Check another location.</a></p>
+  </div>
+  <div class="results" id="outOfReach" style="display: none;">
+    <h2 class="text-align-center">Bummer! You're just out of reach.</h2>
+    <p class="text-align-center">We're growing quickly. <a href="/contact-us">Send us your information</a> so we can contact you when we start operating in your area.</p>
+    <p class="text-align-center"><a href="#" class="reloadLink"><i class="fa fa-arrow-circle-o-left" style="margin-right: 10px; margin-top: 30px;"></i>Check another location.</a></p>
+  </div>
+</body>
